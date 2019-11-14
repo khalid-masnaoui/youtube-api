@@ -28,7 +28,7 @@
           })
           .then(function(response) {
                   // Handle the results here (response.result has the parsed body).
-                  console.log("Response", response.result, "hey");
+                  console.log("Response", response.result, response.result["kind"], "hey");
                   document.getElementById("h3").textContent = "jaja";
               },
               function(err) { console.error("Execute error", err); });
