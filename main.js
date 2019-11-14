@@ -107,8 +107,7 @@ document.querySelector("form").addEventListener("submit", getData);
 function getData(e) {
     e.preventDefault();
     const value = document.querySelector("input[type=text]").value;
-    const channelID =
-        console.log(value);
+    console.log(value);
     if (value == "") {
         alert("not valid");
 
