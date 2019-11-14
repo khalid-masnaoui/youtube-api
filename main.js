@@ -70,11 +70,13 @@ function findVideos(arg) {
                 // Handle the results here (response.result has the parsed body).
                 const videos = response.result.items;
                 if (videos) {
+                    videoscontainer.textContent = "";
                     videos.forEach(elt => {
-                        const videoID = elt.snippet.thumbnails.default.url.slice(23, 35);
+                        const videoID = elt.snippet.thumbnails.default.url.slice(23, 34);
                         console.log(videoID);
+                        videoscontainer.textContent += '<iframe width="300" height="300" src="https://www.youtube.com/embed/' + videoID + 'frameborder="0" allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
                     });
-                    // <iframe width="300" height="300" src="https://www.youtube.com/embed/gVuuiSjbAXI" frameborder="0" allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
                 } else {
                     videoscontainer.textContent = "<h2>no videos uploads</h2>";
                 }
