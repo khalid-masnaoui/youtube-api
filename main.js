@@ -49,6 +49,7 @@ function execute(channel) {
                 view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
                 video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
                 channelID = response.result.items[0].contentDetails.relatedPlaylists.uploads;
+                console.log(channelID);
             },
             function(err) { console.error("Execute error", err); });
 }
@@ -112,9 +113,14 @@ function getData(e) {
         alert("not valid");
 
     } else {
+        async function final(value) {
+            await execute(value);
+            findVideos();
+        };
+        final(value);
 
-        execute(value);
-        findVideos();
+
+
 
 
 
