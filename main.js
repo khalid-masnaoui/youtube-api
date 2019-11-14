@@ -5,7 +5,7 @@ const description = document.querySelector("#description");
 const country = document.querySelector("#country");
 const view = document.querySelector("#view");
 const video_number = document.querySelector("#video_number");
-const hello = false;
+const channelID;
 
 
 // the API functions 
@@ -48,12 +48,27 @@ function execute(channel) {
                 country.textContent = "country : " + response.result.items[0].snippet.country;
                 view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
                 video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
+                channelID = response.result.items[0].contentDetails.relatedPlayLists.uploads;
             },
             function(err) { console.error("Execute error", err); });
 }
 gapi.load("client:auth2", function() {
     gapi.auth2.init({ client_id: CLIENT_ID });
 });
+
+// getting videos 
+function findVideos(value) {
+    return gapi.client.youtube.playlists.list({
+            "part": "snippet",
+            "channelId": value,
+            "maxResults": 10
+        })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+            },
+            function(err) { console.error("Execute error", err); });
+}
 
 // LOG IN
 
@@ -90,12 +105,15 @@ document.querySelector("form").addEventListener("submit", getData);
 function getData(e) {
     e.preventDefault();
     const value = document.querySelector("input[type=text]").value;
-    console.log(value);
+    const channelID =
+        console.log(value);
     if (value == "") {
         alert("not valid");
 
     } else {
-        execute(value)
+        execute(value);
+        findVideos(channelID);
+
 
 
     }
