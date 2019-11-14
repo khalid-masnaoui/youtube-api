@@ -1,3 +1,4 @@
+/////////7 cont and variables
 const CLIENT_ID = "1090425021546-l9nr8runksisd7opjua0f42fh8g25tn1.apps.googleusercontent.com";
 const API_KEY = "AIzaSyDPicS-fechJ7YH45lT5hDhr-zUFOZeiHo";
 const title = document.querySelector("#title");
@@ -9,7 +10,9 @@ let channelID;
 const videoscontainer = document.querySelector("#video_container");
 
 
-// the API functions 
+///////// the API functions 
+
+// authentification with auth2 (auth library)
 function authenticate() {
     return gapi.auth2.getAuthInstance()
         .signIn({ scope: "https://www.googleapis.com/auth/youtube.readonly" })
@@ -21,7 +24,9 @@ function authenticate() {
                 console.error("Error signing in", err);
 
             });
+
 }
+// load the GAPI client (api library)
 
 function loadClient() {
     gapi.client.setApiKey(API_KEY);
@@ -36,6 +41,9 @@ function loadClient() {
             });
 }
 // Make sure the client is loaded and sign-in is complete before calling this method.
+
+
+// get the channel data and render it inside the HTMl
 function execute(channel) {
     return gapi.client.youtube.channels.list({
             "part": "snippet,contentDetails,statistics",
@@ -54,11 +62,14 @@ function execute(channel) {
             },
             function(err) { console.error("Execute error", err); });
 }
+
+
+/// load auth2 (auth library)
 gapi.load("client:auth2", function() {
     gapi.auth2.init({ client_id: CLIENT_ID });
 });
 
-// getting videos 
+// getting videos and render them inside the HTML
 function findVideos(arg) {
 
     return gapi.client.youtube.playlists.list({
@@ -84,7 +95,7 @@ function findVideos(arg) {
             function(err) { console.error("Execute error", err); });
 }
 
-// LOG IN
+////////// LOG IN
 
 document.querySelector(".autorized").addEventListener("click", logIn);
 
@@ -101,19 +112,20 @@ async function logIn(e) {
 
 };
 
-//LOG OUT
+//////////////// LOG OUT
 document.querySelector(".execute").addEventListener("click", logOut);
 
 function logOut(e) {
     e.target.style.display = "none";
     document.querySelector(".autorized").style.display = "block";
+    videoscontainer.innerHTML = "";
     document.querySelector("form").style.display = "none";
     document.querySelectorAll(".content h3").forEach(elt => {
         elt.textContent = "";
     })
 };
 
-//get channel data
+/////////////// / get channel data
 document.querySelector("form").addEventListener("submit", getData);
 
 function getData(e) {
@@ -131,11 +143,5 @@ function getData(e) {
             findVideos(channelID);
         };
         final(value);
-
-
-
-
-
-
     }
 };
