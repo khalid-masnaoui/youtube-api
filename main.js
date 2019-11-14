@@ -29,7 +29,7 @@
           .then(function(response) {
                   // Handle the results here (response.result has the parsed body).
                   console.log("Response", response, "hey");
-                  document.getElementById("h3").textContent = response;
+                  document.getElementById("h3").textContent = response[0].kind;
               },
               function(err) { console.error("Execute error", err); });
   }
