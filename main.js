@@ -14,17 +14,18 @@
   const hello = false;
 
 
-
+  // the API functions 
   function authenticate() {
       return gapi.auth2.getAuthInstance()
           .signIn({ scope: "https://www.googleapis.com/auth/youtube.readonly" })
           .then(function() {
                   console.log("Sign-in successful");
-                  hello == true
+                  return true
+
               },
               function(err) {
                   console.error("Error signing in", err);
-                  hello == false
+
               });
   }
 
@@ -33,11 +34,11 @@
       return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
           .then(function() {
                   console.log("GAPI client loaded for API");
-                  hello == true
+                  return true
               },
               function(err) {
                   console.error("Error loading GAPI client for API", err);
-                  hello == false
+
               });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
@@ -65,13 +66,17 @@
 
   document.querySelector(".autorized").addEventListener("click", logIn);
 
-  function logIn(e) {
-      authenticate().then(loadClient);
-      if (hello == true) {
+  async function logIn(e) {
+      const val = await authenticate();
+      const val2 = await loadClient();
+      console.log("hey");
+      if (val && val2) {
           e.target.style.display = "none";
           document.querySelector(".execute").style.display = "block";
           document.querySelector("form").style.display = "block";
-      }
+      } else(console.log("dada"))
+
+
   };
 
   //log Out 
