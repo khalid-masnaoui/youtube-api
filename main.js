@@ -35,9 +35,12 @@
           })
           .then(function(response) {
                   // Handle the results here (response.result has the parsed body).
-                  console.log("Response", response.result, response.result.items[0].snippet.title, response.result.items[0].snippet.description, response.result.items[0].snippet.country, response.result.items[0].statistics.viewCount, response.result.items[0].statistics.videoCount);
-                  title.textContent = "haha";
-                  country.textContent = "jaja";
+                  console.log("Response", response.result, );
+                  title.textContent = "title : " + response.result.items[0].snippet.title;
+                  description.textContent = "Description : " + response.result.items[0].snippet.description;
+                  country.textContent = "country : " + response.result.items[0].snippet.country;
+                  view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
+                  video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
               },
               function(err) { console.error("Execute error", err); });
   }
