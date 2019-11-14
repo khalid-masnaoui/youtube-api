@@ -57,11 +57,11 @@ gapi.load("client:auth2", function() {
 });
 
 // getting videos 
-async function findVideos(value1, value2) {
-    await execute(value1);
+function findVideos() {
+
     return gapi.client.youtube.playlists.list({
             "part": "snippet",
-            "channelId": value2,
+            "channelId": "UC29ju8bIPH5as8OGnQzwJyA",
             "maxResults": 10
         })
         .then(function(response) {
@@ -113,9 +113,11 @@ function getData(e) {
 
     } else {
 
-        findVideos(value, channelID);
+        execute(value);
 
 
 
     }
 };
+
+findVideos();
