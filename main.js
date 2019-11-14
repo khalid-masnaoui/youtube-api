@@ -6,6 +6,7 @@ const country = document.querySelector("#country");
 const view = document.querySelector("#view");
 const video_number = document.querySelector("#video_number");
 let channelID;
+const videoscontainer = document.querySelector("#video_container");
 
 
 // the API functions 
@@ -67,7 +68,16 @@ function findVideos(arg) {
         })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                console.log("ready", response.result);
+                const videos = response.result.items;
+                if (videos) {
+                    videos.forEach(elt => {
+                        const videoID = elt.snippet.thumbnails.default.url.slice(23, 35);
+                        console.log(videoID);
+                    });
+                    // <iframe width="300" height="300" src="https://www.youtube.com/embed/gVuuiSjbAXI" frameborder="0" allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                } else {
+                    videoscontainer.textContent = "<h2>no videos uploads</h2>";
+                }
             },
             function(err) { console.error("Execute error", err); });
 }
