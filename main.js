@@ -74,7 +74,7 @@ function findVideos(arg) {
                     videos.forEach(elt => {
                         const videoID = elt.snippet.thumbnails.default.url.slice(23, 34);
                         console.log(videoID);
-                        videoscontainer.innerHTML += '<div> <iframe width="300" height="300" src="https://www.youtube.com/embed/' + videoID + ' frameborder="0" allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'
+                        videoscontainer.innerHTML += '<div style="display:inline-block;"> <iframe width="300" height="300" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allow="accelerometer;  encrypted-media" allowfullscreen></iframe> </div>'
                     });
 
                 } else {
