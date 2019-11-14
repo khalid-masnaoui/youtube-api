@@ -5,7 +5,7 @@ const description = document.querySelector("#description");
 const country = document.querySelector("#country");
 const view = document.querySelector("#view");
 const video_number = document.querySelector("#video_number");
-const channelID;
+let channelID;
 
 
 // the API functions 
