@@ -114,6 +114,8 @@ function getData(e) {
     } else {
         async function final(arg) {
             await execute(arg);
+            console.log(channelID);
+            console.log("c'moon")
             findVideos(channelID);
         };
         final(value);
