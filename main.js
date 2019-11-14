@@ -28,10 +28,10 @@
               function(err) { console.error("Error loading GAPI client for API", err); });
   }
   // Make sure the client is loaded and sign-in is complete before calling this method.
-  function execute() {
+  function execute(channel) {
       return gapi.client.youtube.channels.list({
               "part": "snippet,contentDetails,statistics",
-              "forUsername": "GoogleDevelopers"
+              "forUsername": channel
           })
           .then(function(response) {
                   // Handle the results here (response.result has the parsed body).
@@ -55,27 +55,13 @@
   function getData(e) {
       e.preventDefault();
       const value = document.querySelector("input[type=text]").value;
+      console.log(value);
       if (value == "") {
           alert("not valid");
 
       } else {
-          function executev() {
-              return gapi.client.youtube.channels.list({
-                      "part": "snippet,contentDetails,statistics",
-                      "forUsername": value
-                  })
-                  .then(function(response) {
-                          // Handle the results here (response.result has the parsed body).
-                          console.log("Response", response.result, );
-                          title.textContent = "title : " + response.result.items[0].snippet.title;
-                          description.textContent = "Description : " + response.result.items[0].snippet.description;
-                          country.textContent = "country : " + response.result.items[0].snippet.country;
-                          view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
-                          video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
-                      },
-                      function(err) { console.error("Execute error", err); });
-          };
-          executev();
+          execute(value)
+
 
       }
 
