@@ -48,7 +48,7 @@ function execute(channel) {
                 country.textContent = "country : " + response.result.items[0].snippet.country;
                 view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
                 video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
-                channelID = response.result.items[0].contentDetails.id;
+                channelID = response.result.items[0].id;
                 console.log(channelID);
             },
             function(err) { console.error("Execute error", err); });
