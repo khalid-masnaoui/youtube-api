@@ -88,6 +88,9 @@
       e.target.style.display = "none";
       document.querySelector(".autorized").style.display = "block";
       document.querySelector("form").style.display = "none";
+      document.querySelectorAll(".content h3").forEach(elt => {
+          elt.textContent = "";
+      })
 
   };
 
