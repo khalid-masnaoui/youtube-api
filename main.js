@@ -4,8 +4,8 @@
    * https://developers.google.com/explorer-help/guides/code_samples#javascript
    */
 
-  const CLIENT_ID = "1090425021546 - l9nr8runksisd7opjua0f42fh8g25tn1.apps.googleusercontent.com";
-  const API_KEY = "AIzaSyDPicS - fechJ7YH45lT5hDhr - zUFOZeiHo";
+  const CLIENT_ID = "1090425021546-l9nr8runksisd7opjua0f42fh8g25tn1.apps.googleusercontent.com";
+  const API_KEY = "AIzaSyDPicS-fechJ7YH45lT5hDhr-zUFOZeiHo";
 
   function authenticate() {
       return gapi.auth2.getAuthInstance()
