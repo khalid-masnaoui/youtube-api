@@ -56,8 +56,13 @@ div.grid {
     border: none;
 }
 
+.execute {
+    display: none;
+}
+
 form {
     margin-top: 5px;
+    display: none;
 }
 
 input:nth-child(1) {
