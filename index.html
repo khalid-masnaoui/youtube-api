@@ -5,20 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <script src="https://apis.google.com/js/api.js"></script>
 
     <title>Document</title>
 </head>
 
 <body>
+    <nav>
+        <div>
+            <h3>Youtube API</h3>
+        </div>
+    </nav>
+    <div class="grid">
 
-    <button onclick="authenticate().then(loadClient)">authorize and load</button>
-    <button onclick="execute()">execute</button>
-    <h3 id="title"></h3>
-    <h3 id="description"></h3>
-    <h3 id="country"></h3>
-    <h3 id="view"></h3>
-    <h3 id="video_number"></h3>
+
+        <div class="buttons">
+            <button class="autorized" onclick="authenticate().then(loadClient)">authorize and load</button>
+            <button class="execute" onclick="execute()">execute</button>
+            <form id="getData">
+                <input type="text" placeholder="enter channel name">
+                <input type="submit" value="get channel data">
+            </form>
+        </div>
+        <div class="content">
+            <h3 id="title">k</h3>
+            <h3 id="description"></h3>
+            <h3 id="country"></h3>
+            <h3 id="view"></h3>
+            <h3 id="video_number"></h3>
+        </div>
+    </div>
 
 
 

@@ -47,3 +47,36 @@
   gapi.load("client:auth2", function() {
       gapi.auth2.init({ client_id: CLIENT_ID });
   });
+
+
+  //get channel data
+  document.querySelector("form").addEventListener("submit", getData);
+
+  function getData(e) {
+      e.preventDefault();
+      const value = document.querySelector("input[type=text]").value;
+      if (value == "") {
+          alert("not valid");
+
+      } else {
+          function execute() {
+              return gapi.client.youtube.channels.list({
+                      "part": "snippet,contentDetails,statistics",
+                      "forUsername": value
+                  })
+                  .then(function(response) {
+                          // Handle the results here (response.result has the parsed body).
+                          console.log("Response", response.result, );
+                          title.textContent = "title : " + response.result.items[0].snippet.title;
+                          description.textContent = "Description : " + response.result.items[0].snippet.description;
+                          country.textContent = "country : " + response.result.items[0].snippet.country;
+                          view.textContent = "view number : " + response.result.items[0].statistics.viewCount;
+                          video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
+                      },
+                      function(err) { console.error("Execute error", err); });
+          }
+
+      }
+
+
+  }
