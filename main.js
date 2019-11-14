@@ -6,6 +6,13 @@
 
   const CLIENT_ID = "1090425021546-l9nr8runksisd7opjua0f42fh8g25tn1.apps.googleusercontent.com";
   const API_KEY = "AIzaSyDPicS-fechJ7YH45lT5hDhr-zUFOZeiHo";
+  const title = document.querySelector("#title");
+  const description = document.querySelector("#description");
+  const country = document.querySelector("#country");
+  const view = document.querySelector("#view");
+  const video_number = document.querySelector("#video_number");
+
+
 
   function authenticate() {
       return gapi.auth2.getAuthInstance()
@@ -29,7 +36,8 @@
           .then(function(response) {
                   // Handle the results here (response.result has the parsed body).
                   console.log("Response", response.result, response.result.items[0].snippet.title, response.result.items[0].snippet.description, response.result.items[0].snippet.country, response.result.items[0].statistics.viewCount, response.result.items[0].statistics.videoCount);
-                  document.getElementById("h3").textContent = "haha";
+                  title.textContent = "haha";
+                  country.textContent = "jaja";
               },
               function(err) { console.error("Execute error", err); });
   }
