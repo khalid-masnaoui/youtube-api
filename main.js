@@ -59,7 +59,7 @@
           alert("not valid");
 
       } else {
-          function execute() {
+          function executev() {
               return gapi.client.youtube.channels.list({
                       "part": "snippet,contentDetails,statistics",
                       "forUsername": value
@@ -74,7 +74,8 @@
                           video_number.textContent = "video number : " + response.result.items[0].statistics.videoCount;
                       },
                       function(err) { console.error("Execute error", err); });
-          }
+          };
+          executev();
 
       }
 
