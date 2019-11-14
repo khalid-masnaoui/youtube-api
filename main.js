@@ -57,15 +57,16 @@ gapi.load("client:auth2", function() {
 });
 
 // getting videos 
-function findVideos(value) {
+async function findVideos(value1, value2) {
+    await execute(value1);
     return gapi.client.youtube.playlists.list({
             "part": "snippet",
-            "channelId": value,
+            "channelId": value2,
             "maxResults": 10
         })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
-                console.log("Response", response);
+                console.log("ready", response);
             },
             function(err) { console.error("Execute error", err); });
 }
@@ -111,8 +112,8 @@ function getData(e) {
         alert("not valid");
 
     } else {
-        execute(value);
-        findVideos(channelID);
+
+        findVideos(value, channelID);
 
 
 
