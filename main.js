@@ -114,10 +114,9 @@ function getData(e) {
     } else {
 
         execute(value);
+        findVideos();
 
 
 
     }
 };
-
-findVideos();
